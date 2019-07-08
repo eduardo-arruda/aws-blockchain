@@ -464,24 +464,16 @@ let Chaincode = class {
    * }
    */
   async createDocument(stub, args) {
-    console.log('============= START : createDocument ===========');
-    console.log('##### createDocument arguments: ' + JSON.stringify(args));
-
     // args is passed as a JSON string
     let json = JSON.parse(args);
     let key = 'document' + json['id'];
     json['docType'] = 'document';
-
-    console.log('##### createDocument payload: ' + JSON.stringify(json));
-
     // Check if the document already exists
     let documentQuery = await stub.getState(key);
     if (documentQuery.toString()) {
       throw new Error('##### createDocument - This document already exists: ' + json['id']);
     }
-
     await stub.putState(key, Buffer.from(JSON.stringify(json)));
-    console.log('============= END : createDocument ===========');
   }
 
   /**
@@ -491,9 +483,6 @@ let Chaincode = class {
    * @param {*} args 
    */
   async queryAllDocuments(stub, args) {
-    console.log('============= START : queryAllDocuments ===========');
-    console.log('##### queryAllDocuments arguments: ' + JSON.stringify(args));
- 
     let queryString = '{"selector": {"docType": "document"}}';
     return queryByString(stub, queryString);
   }
@@ -505,14 +494,9 @@ let Chaincode = class {
    * @param {*} args 
    */
   async queryDocument(stub, args) {
-    console.log('============= START : queryDocument ===========');
-    console.log('##### queryDocument arguments: ' + JSON.stringify(args));
-
     // args is passed as a JSON string
     let json = JSON.parse(args);
     let key = 'document' + json['id'];
-    console.log('##### queryDocument key: ' + key);
-
     return queryByKey(stub, key);
   }
 

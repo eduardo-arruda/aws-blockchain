@@ -145,53 +145,24 @@ app.post('/users', awaitHandler(async (req, res) => {
 
 // POST Document
 app.post('/documents', awaitHandler(async (req, res) => {
-	logger.info('================ POST on Document');
 	var args = req.body;
 	var fcn = "createDocument";
-	logger.info('##### POST on Document - id : ' + id);
-	logger.info('##### POST on Document - name : ' + name);
-	logger.info('##### POST on Document - hash : ' + hash);
-	logger.info('##### POST on Document - userOrg : ' + orgName);
-	logger.info('##### POST on Document - channelName : ' + channelName);
-	logger.info('##### POST on Document - chaincodeName : ' + chaincodeName);
-	logger.info('##### POST on Document - fcn : ' + fcn);
-	logger.info('##### POST on Document - args : ' + JSON.stringify(args));
-	logger.info('##### POST on Document - peers : ' + peers);
 	let message = await invoke.invokeChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
 	res.send(message);
 }));
 
 // GET Document
 app.get('/documents', awaitHandler(async (req, res) => {
-	logger.info('================ GET on Document');
 	let args = {};
 	let fcn = "queryAllDocuments";
-	logger.info('##### GET on Document - id : ' + id);
-	logger.info('##### GET on Document - name : ' + name);
-	logger.info('##### GET on Document - hash : ' + hash);
-	logger.info('##### GET on Document - userOrg : ' + orgName);
-	logger.info('##### GET on Document - channelName : ' + channelName);
-	logger.info('##### GET on Document - chaincodeName : ' + chaincodeName);
-	logger.info('##### GET on Document - fcn : ' + fcn);
-	logger.info('##### GET on Document - args : ' + JSON.stringify(args));
-	logger.info('##### GET on Document - peers : ' + peers);
 	let message = await query.queryChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
  	res.send(message);
 }));
 
 // GET a specific Document
 app.get('/documents/:id', awaitHandler(async (req, res) => {
-	logger.info('================ GET on Document by id');
-	logger.info('Document id : ' + req.params);
 	let args = req.params;
 	let fcn = "queryDocument";
-	logger.info('##### GET on Document by id - id : ' + id);
-	logger.info('##### GET on Document by id - userOrg : ' + orgName);
-	logger.info('##### GET on Document by id - channelName : ' + channelName);
-	logger.info('##### GET on Document by id - chaincodeName : ' + chaincodeName);
-	logger.info('##### GET on Document by id - fcn : ' + fcn);
-	logger.info('##### GET on Document by id - args : ' + JSON.stringify(args));
-	logger.info('##### GET on Document by id - peers : ' + peers);
 	let message = await query.queryChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
  	res.send(message);
 }));
