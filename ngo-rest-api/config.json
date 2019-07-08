@@ -10,7 +10,7 @@
     "admins":[
        {
           "username":"admin",
-          "secret":"Adminpwd1!"
+          "secret":"aB12345678!"
        }
     ]
  }
