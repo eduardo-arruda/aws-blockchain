@@ -146,7 +146,7 @@ app.post('/users', awaitHandler(async (req, res) => {
 // POST Document
 app.post('/documents', awaitHandler(async (req, res) => {
 	var args = req.body;
-	var fcn = "createDocument";
+	var fcn = "createDonor";
 	let message = await invoke.invokeChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
 	res.send(message);
 }));
@@ -154,7 +154,7 @@ app.post('/documents', awaitHandler(async (req, res) => {
 // GET Document
 app.get('/documents', awaitHandler(async (req, res) => {
 	let args = {};
-	let fcn = "queryAllDocuments";
+	let fcn = "queryAllDonors";
 	let message = await query.queryChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
  	res.send(message);
 }));
@@ -162,7 +162,7 @@ app.get('/documents', awaitHandler(async (req, res) => {
 // GET a specific Document
 app.get('/documents/:id', awaitHandler(async (req, res) => {
 	let args = req.params;
-	let fcn = "queryDocument";
+	let fcn = "queryDonor";
 	let message = await query.queryChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
  	res.send(message);
 }));
